@@ -1,0 +1,35 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="cmedewou" id="20201011130000">
+        <createTable tableName="frame_file">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="frameFilePK" />
+            </column>
+            <column name="name" type="varchar"/>
+            <column name="remote_path" type="varchar"/>
+            <column name="type" type="varchar"/>
+            <column name="featured" type="boolean" defaultValue="false"/>
+            <column name="parent_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="cmedewou" id="20201011130000-2">
+        <createTable tableName="frame_file_meta">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="frameFileMetaPK" />
+            </column>
+            <column name="frame_file_id" type="BIGINT"/>
+            <column name="size" type="number"/>
+            <column name="type" type="varchar"/>
+            <column name="last_access_time_stamp" type="number"/>
+            <column name="last_modified_time_stamp" type="number"/>
+            <column name="last_change_time_stamp" type="number"/>
+            <column name="create_time_stamp" type="number"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

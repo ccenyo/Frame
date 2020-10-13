@@ -1,0 +1,12 @@
+/* You can add global styles to this file, and also import other style files */
+.bodybg-color {
+    background: hsla(46, 73%, 75%, 1);
+
+    background: radial-gradient(circle, hsla(46, 73%, 75%, 1) 0%, hsla(176, 73%, 88%, 1) 100%);
+
+    background: -moz-radial-gradient(circle, hsla(46, 73%, 75%, 1) 0%, hsla(176, 73%, 88%, 1) 100%);
+
+    background: -webkit-radial-gradient(circle, hsla(46, 73%, 75%, 1) 0%, hsla(176, 73%, 88%, 1) 100%);
+
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#EED991", endColorstr="#CCF7F4", GradientType=1 );
+}

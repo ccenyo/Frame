@@ -1,0 +1,10 @@
+<mdb-carousel [isControls]="false" [animation]="'slide'" *ngIf="imageToShow">
+    <mdb-carousel-item>
+      <img class="d-block w-100 fixed-background" [src]="'data:image/jpg;base64,'+imageToShow" alt="First slide" [ngStyle]="applyStyles()">
+    </mdb-carousel-item>
+</mdb-carousel>
+<p *ngIf="!imageToShow">No image</p>
+
+
+
+
