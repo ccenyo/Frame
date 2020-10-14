@@ -36,3 +36,4 @@ src/main/resources/frontend/angular-app/node_modules
 src/main/resources/public
 frame_base.*
 src/main/resources/env.properties
+/src/main/resources/frontend/node_modules/
