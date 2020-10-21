@@ -1,0 +1,31 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="cmedewou" id="20201015093500">
+        <createTable tableName="source">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="sourcePK" />
+            </column>
+            <column name="host" type="varchar"/>
+            <column name="name" type="varchar"/>
+            <column name="port" type="number"/>
+            <column name="type" type="varchar"/>
+            <column name="userName" type="varchar"/>
+            <column name="password" type="varchar"/>
+            <column name="rootFolder" type="varchar"/>
+            <column name="source_type" type="varchar"/>
+        </createTable>
+
+        <addColumn tableName="frame_file">
+            <column name="source_id" type="BIGINT"/>
+        </addColumn>
+
+        <addForeignKeyConstraint baseTableName="frame_file" baseColumnNames="source_id"
+                                 constraintName="source_frame_file"
+                                 referencedTableName="source"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

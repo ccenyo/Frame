@@ -1,5 +1,6 @@
 package com.cenyo.frame.entities;
 
+import com.cenyo.frame.entities.source.Source;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,6 +26,10 @@ public class FrameFile {
     private String name;
 
     private String remotePath;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "source_id")
+    private Source source;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")

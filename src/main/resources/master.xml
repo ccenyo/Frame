@@ -5,5 +5,7 @@
    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
     <include file="classpath:db/changelog/20201011130000_add_frame_tables.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:db/changelog/20201015093500_add_source_table.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:db/changelog/20201019233800_rename_root_folder.xml" relativeToChangelogFile="false"/>
 
 </databaseChangeLog>

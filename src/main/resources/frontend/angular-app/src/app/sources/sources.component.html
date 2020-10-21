@@ -1,0 +1,14 @@
+
+<div *ngIf="sources.length != 0">
+    <app-sources-list [sources] = "sources"></app-sources-list>
+</div>
+
+<div *ngIf="sources.length == 0">
+    <mat-card>
+        <mat-card-title>No source found. Add a new source</mat-card-title>
+        <mat-card-content>
+            <button mat-raised-button routerLink="/add-source" color="primary">Add new source</button>
+        </mat-card-content>
+    </mat-card>
+    <router-outlet></router-outlet>
+</div>

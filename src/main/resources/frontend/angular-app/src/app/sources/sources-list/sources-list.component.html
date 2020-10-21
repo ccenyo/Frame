@@ -1,0 +1,22 @@
+<table class="my-table">
+    <thead class="my-table headers">
+      <tr>
+        <th>Nom</th>
+        <th>Type</th>
+        <th>Host</th>
+        <th>Port</th>
+        <th>UserName</th>
+        <th>rootFolder</th>
+      </tr>
+    </thead>
+    <tbody class="my-table body">
+      <tr my-active *ngFor="let source of sources">
+        <td>{{source.name}}</td>
+        <td>{{source.type}}</td>
+        <td>{{source.host}}</td>
+        <td>{{source.port}}</td>
+        <td>{{source.userName}}</td>
+        <td>{{source.rootFolder}}</td>
+      </tr>
+    </tbody>
+</table>

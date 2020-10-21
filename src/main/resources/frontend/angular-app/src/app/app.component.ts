@@ -1,4 +1,6 @@
-import { Component, Renderer2 } from '@angular/core';
+import { Component, Renderer2, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { SourceService } from './sources/source.service';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +9,13 @@ import { Component, Renderer2 } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-app';
+  public sources = [];
+  constructor(public sourceService: SourceService) {
+  }
 
-  constructor(private renderer: Renderer2) {
-    this.renderer.addClass(document.body, 'bodybg-color');
+  ngOnInit(): void {
+    this.sourceService.getAllSources().subscribe(source => {
+      this.sources = source;
+    });
   }
 }

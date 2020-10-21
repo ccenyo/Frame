@@ -1,1 +1,2 @@
-<app-content-viewer></app-content-viewer>
+<app-content-viewer *ngIf="sources.length != 0"></app-content-viewer>
+<app-sources  *ngIf="sources.length == 0"></app-sources> 

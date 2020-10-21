@@ -10,19 +10,12 @@ const optionRequete = {
 
 @Injectable({providedIn: 'root'})
 export class ContentViewerService {
- 
-  
-  constructor(private http: HttpClient) {
-
-  }
+  constructor(private http: HttpClient) {}
 
   
-  ngOnInit() {
-      
-  }
+  ngOnInit() {}
+
   getCurrentImage() {
     return this.http.get('http://localhost:8080/image/current', {responseType: 'text'});
   }
-  
-
 }
