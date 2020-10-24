@@ -2,6 +2,7 @@ package com.cenyo.frame.services;
 
 import clients.DsmFileStationClient;
 import com.cenyo.frame.entities.FrameFile;
+import com.cenyo.frame.entities.source.Source;
 import com.cenyo.frame.repositories.FrameFileRepository;
 import com.cenyo.frame.utils.ImageDominantColor;
 import org.apache.commons.io.FileUtils;
@@ -20,6 +21,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Base64;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Collectors;
 
@@ -31,9 +33,16 @@ public class FrameFileService {
     @Autowired
     public FrameFileRepository frameFileRepository;
 
+    @Autowired
+    public SourceService sourceService;
+
     //@Scheduled(cron = "0 */1 * ? * *")
     @Transactional
     public void updateBase() {
+
+        sourceService.getAllSources().forEach(source -> {
+
+        });
         DsmFileStationClient client = DsmFileStationClient.login(DsmAuth.fromResource("env.properties"));
         Response<DsmListFolderResponse> response = client.ls("/homes/cenyo/Drive/Moments/Web/2019-08-15").call();
         List<DsmResponseFields.Files> files = response.getData().getFiles();
@@ -45,18 +54,44 @@ public class FrameFileService {
         }
         client.download(f.getPath(), "img").call();
         url = "img/"+f.getName();
-
     }
 
-    public String getUrl() throws IOException {
-        updateBase();
-        return new File(url).getAbsolutePath();
+    public void handleSource(Source source) {
+        if (source.getType() == Source.Type.Local) {
+
+        }
+    }
+
+    @Transactional
+    public List<FrameFile> getAllFrameFiles() {
+        return frameFileRepository.findAll();
+    }
+
+    public Optional<FrameFile> selectRandomFile() {
+        List<FrameFile> files = getAllFrameFiles();
+        if(!files.isEmpty()) {
+            Random random = new Random(files.size());
+           return Optional.ofNullable(files.get(random.nextInt()));
+        }
+        return Optional.empty();
+    }
+
+    public Optional<String> getUrl() {
+        selectRandomFile()
+                .ifPresent(file -> {
+                    this.url = file.getRemotePath();
+                });
+        if(url == null) {
+            return Optional.empty();
+        }
+        return  Optional.of(new File(url).getAbsolutePath());
     }
 
     public String getFile() throws IOException {
-        File file = new File(getUrl());
+        String url = getUrl().orElseThrow();
+        File file = new File(url);
         byte[] fileContent = FileUtils.readFileToByteArray(file);
-        return getImageSize(file)+"|"+ getImageColors(getUrl())+"|"+Base64.getEncoder().encodeToString(fileContent);
+        return getImageSize(file)+"|"+ getImageColors(url)+"|"+Base64.getEncoder().encodeToString(fileContent);
     }
 
     public String getImageColors(String imageUrl) throws IOException {
