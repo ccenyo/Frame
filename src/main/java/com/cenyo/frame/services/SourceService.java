@@ -53,7 +53,7 @@ public class SourceService {
     }
 
     @Transactional
-    public void save(Source source) {
-        sourceRepository.save(source);
+    public Source save(Source source) {
+        return sourceRepository.save(source);
     }
 }

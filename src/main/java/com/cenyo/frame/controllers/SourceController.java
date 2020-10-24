@@ -36,7 +36,7 @@ public class SourceController {
     }
 
     @RequestMapping("/save")
-    public void save(@RequestBody Source source) {
-        sourceService.save(source);
+    public Source save(@RequestBody Source source) {
+       return sourceService.save(source);
     }
 }
