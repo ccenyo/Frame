@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { MatRadioModule } from '@angular/material/radio';
+import { ToastrModule } from 'ngx-toastr';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -38,7 +39,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatInputModule,
     RouterModule,
     MatRadioModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],

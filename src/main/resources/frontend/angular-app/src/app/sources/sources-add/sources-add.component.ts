@@ -4,6 +4,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 import { SourceService } from '../source.service';
 import { source } from '../sources.model';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
  
 
 @Component({
@@ -21,7 +23,7 @@ export class SourcesAddComponent implements OnInit {
   public error: string;
   public success: string;
 
-  constructor(private location: Location, private sourceService: SourceService) { }
+  constructor(private location: Location, private sourceService: SourceService, private toastr: ToastrService, private router: Router) { }
  
   ngOnInit() {
     this.sourceForm = new FormGroup({
@@ -54,7 +56,10 @@ export class SourcesAddComponent implements OnInit {
       var s = new source(null, courseFormValue.name, courseFormValue.sourceType, courseFormValue.host, courseFormValue.port, courseFormValue.userName, courseFormValue.rootFolder);
       s['password']=courseFormValue.password;
       this.sourceService.save(s).subscribe(response => {
-          console.log("saved");
+          if(response) {
+            this.toastr.success("source "+response.name+" successfully saved");
+            this.router.navigate(['source-list']);
+          }
       });
     }
   }
@@ -67,7 +72,7 @@ export class SourcesAddComponent implements OnInit {
         this.success="The folder is valid"
         this.error = undefined;
         this.folderChecked = true;
-        this.sourceForm.get('rootFolder').disable()
+      //  this.sourceForm.get('rootFolder').disable()
       } else {
         this.success = undefined;
         this.error = "The folder is not valid or does not exist"

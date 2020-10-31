@@ -1,9 +1,8 @@
-
-<div *ngIf="sources.length != 0">
-    <app-sources-list [sources] = "sources"></app-sources-list>
-</div>
-
-<div *ngIf="sources.length == 0">
+<div>
+    <div *ngIf="sources.length != 0">
+        <app-sources-list [sources] = "sources"></app-sources-list>
+    </div>
+    <br>
     <mat-card>
         <mat-card-title>No source found. Add a new source</mat-card-title>
         <mat-card-content>

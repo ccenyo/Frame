@@ -1,10 +1,8 @@
+<button mat-raised-button (click)= "clickShow()" color="primary">Sources</button>
+<app-sources *ngIf="show"></app-sources>
 <mdb-carousel [isControls]="false" [animation]="'slide'" *ngIf="imageToShow">
     <mdb-carousel-item>
       <img class="d-block w-100 fixed-background" [src]="'data:image/jpg;base64,'+imageToShow" alt="First slide" [ngStyle]="applyStyles()">
     </mdb-carousel-item>
 </mdb-carousel>
 <p *ngIf="!imageToShow"  [ngStyle]="applyStyles()">No image</p>
-
-
-
-

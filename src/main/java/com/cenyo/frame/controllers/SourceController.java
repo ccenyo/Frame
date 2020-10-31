@@ -1,6 +1,7 @@
 package com.cenyo.frame.controllers;
 
 import com.cenyo.frame.entities.source.Source;
+import com.cenyo.frame.entities.source.SourceDTO;
 import com.cenyo.frame.services.SourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -21,22 +22,22 @@ public class SourceController {
     public SourceService sourceService;
 
     @RequestMapping("/getAll")
-    public List<Source> getAllSource() {
+    public List<SourceDTO> getAllSource() {
         return sourceService.getAllSources();
     }
 
     @RequestMapping("/checkFolder")
-    public boolean isPathExist(@RequestBody Source source) {
+    public boolean isPathExist(@RequestBody SourceDTO source) {
         return sourceService.isPathValid(source);
     }
 
     @RequestMapping("/tryConnexion")
-    public boolean tryConnexion(@RequestBody Source source) {
+    public boolean tryConnexion(@RequestBody SourceDTO source) {
         return sourceService.tryConnect(source);
     }
 
     @RequestMapping("/save")
-    public Source save(@RequestBody Source source) {
+    public Source save(@RequestBody SourceDTO source) {
        return sourceService.save(source);
     }
 }

@@ -1,5 +1,4 @@
 import { Component, Renderer2, Inject } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
 import { SourceService } from './sources/source.service';
 
 @Component({

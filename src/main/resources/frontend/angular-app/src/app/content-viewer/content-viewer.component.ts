@@ -14,6 +14,7 @@ export class ContentViewerComponent implements OnInit {
   public currentOpacity = 1;
   public currentWidth;
   public currentHeight;
+  public show: boolean =false;
 
   constructor( private renderer: Renderer2, private contentViewerService: ContentViewerService, private el: ElementRef, @Inject(DOCUMENT) private document: Document) { }
 
@@ -71,6 +72,10 @@ export class ContentViewerComponent implements OnInit {
     }
     
     return styles;
+  }
+
+  clickShow() {
+    this.show = !this.show;
   }
 
   changeImage(image) {

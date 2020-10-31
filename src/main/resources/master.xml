@@ -7,5 +7,6 @@
     <include file="classpath:db/changelog/20201011130000_add_frame_tables.xml" relativeToChangelogFile="false"/>
     <include file="classpath:db/changelog/20201015093500_add_source_table.xml" relativeToChangelogFile="false"/>
     <include file="classpath:db/changelog/20201019233800_rename_root_folder.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:db/changelog/20201025101200_add_column_to_frame_file_meta.xml" relativeToChangelogFile="false"/>
 
 </databaseChangeLog>

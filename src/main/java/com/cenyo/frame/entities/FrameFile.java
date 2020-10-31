@@ -13,6 +13,9 @@ import java.util.List;
 @Setter
 public class FrameFile {
 
+    public static String[] pictureExtensions = {".jpeg", ".jpg", ".png"};
+    public static String[] videoExtensions = {".mp4", ".mov"};
+
     public enum Type {
         DIRECTORY,
         PICTURE,

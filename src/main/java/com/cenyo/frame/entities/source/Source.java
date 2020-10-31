@@ -4,11 +4,14 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
 @Entity(name = "source")
-public class Source {
+@Inheritance(strategy= InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="source_type")
+public abstract class Source {
 
     public enum Type {
         Synology,
@@ -24,13 +27,9 @@ public class Source {
     @Enumerated(value = EnumType.STRING)
     private Type type;
 
-    private String host;
-
-    private Integer port;
-
-    private String userName;
-
-    private String password;
-
     private String rootFolder;
+
+    public  abstract List<String> listChildren(String rootPath);
+
+    public  abstract boolean isFileExists(String path);
 }

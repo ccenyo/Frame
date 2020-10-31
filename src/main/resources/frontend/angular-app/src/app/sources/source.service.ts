@@ -41,7 +41,7 @@ export class SourceService {
   }
 
   save(sr: source) {
-    return this.http.post('http://localhost:8080/source/save', sr, optionRequete);
+    return this.http.post<source>('http://localhost:8080/source/save', sr, optionRequete);
   }
 
 }
