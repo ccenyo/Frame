@@ -6,7 +6,7 @@ import { SourceService } from '../source.service';
 import { source } from '../sources.model';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
- 
+
 
 @Component({
   selector: 'app-sources-add',
@@ -24,7 +24,7 @@ export class SourcesAddComponent implements OnInit {
   public success: string;
 
   constructor(private location: Location, private sourceService: SourceService, private toastr: ToastrService, private router: Router) { }
- 
+
   ngOnInit() {
     this.sourceForm = new FormGroup({
       sourceType: new FormControl('', [Validators.required]),
@@ -36,15 +36,15 @@ export class SourcesAddComponent implements OnInit {
       rootFolder: new FormControl('')
     });
   }
- 
+
   public hasError = (controlName: string, errorName: string) =>{
     return this.sourceForm.controls[controlName].hasError(errorName);
   }
- 
+
   public onCancel = () => {
     this.location.back();
   }
- 
+
   public checkSource = (courseFormValue) => {
     if (this.sourceForm.valid && this.isSynology && !this.connexionSuccess) {
       this.isConnecting = true;
@@ -72,7 +72,7 @@ export class SourcesAddComponent implements OnInit {
         this.success="The folder is valid"
         this.error = undefined;
         this.folderChecked = true;
-      //  this.sourceForm.get('rootFolder').disable()
+        //this.sourceForm.get('rootFolder').disable()
       } else {
         this.success = undefined;
         this.error = "The folder is not valid or does not exist"
@@ -103,7 +103,7 @@ export class SourcesAddComponent implements OnInit {
       }
     })
   }
- 
+
 
   public sourceChange(event) {
     if(event.value == 'Synology') {
