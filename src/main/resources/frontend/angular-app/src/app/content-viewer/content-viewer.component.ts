@@ -15,6 +15,7 @@ export class ContentViewerComponent implements OnInit {
   public currentWidth;
   public currentHeight;
   public show: boolean =false;
+  public isButtonsVisible: boolean = false;
 
   constructor( private renderer: Renderer2, private contentViewerService: ContentViewerService, private el: ElementRef, @Inject(DOCUMENT) private document: Document) { }
 
@@ -22,16 +23,22 @@ export class ContentViewerComponent implements OnInit {
     this.innerHigth = window.innerHeight;
 
 
-    interval(1000 * 60).subscribe(x => {
+    interval(3000 * 60).subscribe(x => {
       this.contentViewerService.getCurrentImage().subscribe(image => {
         var fields = image.split("|");
-        
+
         this.extractSises(fields[0]);
         this.changeImage(fields[2]);
         this.setNewGreadient(fields[1]);
       })
     });
   }
+
+     mouseEnter(){
+        console.log("counter start")
+        this.isButtonsVisible = true;
+        setTimeout(()=> this.isButtonsVisible = false,1000 * 60);
+     }
 
   extractSises(sizes) {
     var partSize = sizes.split(";");
@@ -54,7 +61,7 @@ export class ContentViewerComponent implements OnInit {
     var width;
 
     if(this.currentWidth && this.currentHeight && this.innerHigth) {
-      
+
         if(this.currentWidth > this.currentHeight) {
           var percent = (this.currentHeight - this.innerHigth) / this.currentHeight;
           width = this.currentWidth - (this.currentWidth * percent);
@@ -70,7 +77,7 @@ export class ContentViewerComponent implements OnInit {
     } else {
       styles =  {'max-width': width+'px', 'max-height' : this.innerHigth+'px', 'margin':'0 auto', 'opacity':this.currentOpacity};
     }
-    
+
     return styles;
   }
 
