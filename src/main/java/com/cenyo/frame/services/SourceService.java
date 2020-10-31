@@ -1,6 +1,7 @@
 package com.cenyo.frame.services;
 
 import clients.DsmFileStationClient;
+import com.cenyo.frame.entities.FrameFile;
 import com.cenyo.frame.entities.source.LocalSource;
 import com.cenyo.frame.entities.source.Source;
 import com.cenyo.frame.entities.source.SourceDTO;
@@ -9,6 +10,8 @@ import com.cenyo.frame.repositories.LocalSourceRepository;
 import com.cenyo.frame.repositories.SourceRepository;
 import com.cenyo.frame.repositories.SynologySourceRepository;
 import exeptions.DsmLoginException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import requests.DsmAuth;
@@ -30,6 +33,8 @@ public class SourceService {
 
     @Autowired
     public SynologySourceRepository synologySourceRepository;
+
+    protected static final Logger LOGGER = LoggerFactory.getLogger(SourceService.class);
 
     @Transactional
     public List<SourceDTO> getAllSources() {
@@ -82,5 +87,28 @@ public class SourceService {
             case Local -> localSourceRepository.save((LocalSource) source.toSource());
             case Synology -> synologySourceRepository.save((SynologySource) source.toSource());
         };
+    }
+
+    public static boolean isPicture(String name) {
+        for(String extension : FrameFile.pictureExtensions) {
+            if(name.endsWith(extension)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean isFileAccepted(String name) {
+        for(String extension : FrameFile.pictureExtensions) {
+            if(name.endsWith(extension)) {
+                return true;
+            }
+        }
+        for(String extension : FrameFile.videoExtensions) {
+            if(name.endsWith(extension)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

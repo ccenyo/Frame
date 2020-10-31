@@ -13,18 +13,11 @@ const optionRequete = {
 export class SourceService {
   constructor(private http: HttpClient) {}
 
-  
+
   ngOnInit() {}
 
   getAllSources(){
     var sources: source[] = [];
-    //sources.push(new source(1, "source1", "Synology", "localhost", 5050, "cenyo","/temp"))
-    //sources.push(new source(2, "source2", "Synology", "localhost", 5050, "cenyo","/temp"))
-    //sources.push(new source(3, "source4", "Synology", "localhost", 5050, "cenyo","/temp"))
-    //sources.push(new source(4, "source4", "Synology", "localhost", 5050, "cenyo","/temp"))
-    //sources.push(new source(5, "source5", "Synology", "localhost", 5050, "cenyo","/temp"))
-    
-    //this.http.get<source[]>('http://localhost:8080/source/getAll');
     return this.http.get<source[]>('http://localhost:8080/source/getAll');
   }
 

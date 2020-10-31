@@ -23,7 +23,7 @@ export class ContentViewerComponent implements OnInit {
     this.innerHigth = window.innerHeight;
 
 
-    interval(3000 * 60).subscribe(x => {
+    interval(10000 * 60).subscribe(x => {
       this.contentViewerService.getCurrentImage().subscribe(image => {
         var fields = image.split("|");
 
@@ -34,11 +34,11 @@ export class ContentViewerComponent implements OnInit {
     });
   }
 
-     mouseEnter(){
-        console.log("counter start")
-        this.isButtonsVisible = true;
-        setTimeout(()=> this.isButtonsVisible = false,1000 * 60);
-     }
+   mouseEnter(){
+      console.log("counter start")
+      this.isButtonsVisible = true;
+      setTimeout(()=> this.isButtonsVisible = false,1000 * 60);
+   }
 
   extractSises(sizes) {
     var partSize = sizes.split(";");
@@ -103,5 +103,9 @@ export class ContentViewerComponent implements OnInit {
         this.currentOpacity = i;
     }
     }
+  }
+
+  clickUpdateBase() {
+      this.contentViewerService.updateBase().subscribe();
   }
 }

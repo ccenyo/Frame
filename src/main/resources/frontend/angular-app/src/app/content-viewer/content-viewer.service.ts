@@ -12,10 +12,14 @@ const optionRequete = {
 export class ContentViewerService {
   constructor(private http: HttpClient) {}
 
-  
+
   ngOnInit() {}
 
   getCurrentImage() {
     return this.http.get('http://localhost:8080/image/current', {responseType: 'text'});
   }
+
+    updateBase() {
+      return this.http.post('http://localhost:8080/image/updateBase', {responseType: 'text'});
+    }
 }

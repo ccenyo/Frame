@@ -18,7 +18,12 @@ public class ImageController {
     public FrameFileService frameFileService;
 
     @RequestMapping("/current")
-    public String getAllFolders() throws IOException {
+    public String getCurrentImage() throws IOException {
         return frameFileService.getFile();
+    }
+
+    @RequestMapping("/updateBase")
+    public void updateBase() {
+        frameFileService.updateBase();
     }
 }

@@ -1,4 +1,5 @@
 <button mat-raised-button (click)= "clickShow()" *ngIf="isButtonsVisible" color="primary">Sources</button>
+<button mat-raised-button (click)= "clickUpdateBase()" *ngIf="isButtonsVisible" color="primary">Update Base</button>
 <app-sources *ngIf="show" (mouseenter) ="mouseEnter()"></app-sources>
 <mdb-carousel [isControls]="false" [animation]="'slide'" *ngIf="imageToShow" (mouseenter) ="mouseEnter()">
     <mdb-carousel-item>
